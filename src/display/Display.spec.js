@@ -54,5 +54,4 @@ describe('the Display component', () => {
         const lockedTest = display.getByTestId(/lockedTest/i);
         expect(lockedTest).toHaveClass('red-led');
     })
-
 })
