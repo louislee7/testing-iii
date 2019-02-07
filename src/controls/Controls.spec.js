@@ -13,15 +13,8 @@ describe('The Controls component', () => {
         expect(closedButton).toHaveTextContent('Close Gate');
     })
 
-    // it('the open/close button the toggle the closed props', () => {
-    //     const controls = render(<Controls />);
-    //     const closedButton = controls.getByTestId('closedButton');
-    //     fireEvent.click(closedButton);
-
-    //     expect(closedButton).toHaveTextContent('Open Gate');
-
-    //     const display = render(<Display />);
-    //     const closedTest = display.getByTestId(/closedTest/i);
-    //     expect(closedTest).toHaveTextContent('Closed');
-    // })
+    it('display locked button', () => {
+        const controls = render(<Controls />);
+        const lockedButton = controls.getByTestId('lockedButton');
+        expect(lockedButton).toHaveTextContent('Lock Gate');    })
 })

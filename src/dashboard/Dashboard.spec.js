@@ -2,6 +2,7 @@ import React from 'react';
 import { render, cleanup, fireEvent } from "react-testing-library";
 import Display from "../display/Display";
 import Controls from '../controls/Controls';
+import Dashboard from './Dashboard';
 import 'jest-dom/extend-expect';
 
 afterEach(cleanup);
@@ -16,16 +17,23 @@ describe('the Dashboard component', () => {
     })
 
     it('the open/close button the toggle the closed props', () => {
-        const controls = render(<Controls closed={false} locked={false} />);
-        const closedButton = controls.getByTestId('closedButton');
+        const dashboard = render(<Dashboard />);
+        const closedButton = dashboard.getByTestId('closedButton');
+
         fireEvent.click(closedButton);
-        expect(controls.getByText('Open Gate'));
+        expect(dashboard.getByText('Open Gate'));
+
+        fireEvent.click(closedButton);
+        expect(dashboard.getByText('Close Gate'));
     })
 
     it('the lock button the toggle the locked props', () => {
-        const controls = render(<Controls closed={true} locked={false} />);
-        const lockedButton = controls.getByTestId('lockedButton');
+        const dashboard = render(<Dashboard />);
+        const lockedButton = dashboard.getByTestId('lockedButton');
+        const closedButton = dashboard.getByTestId('closedButton');
+
+        fireEvent.click(closedButton);
         fireEvent.click(lockedButton);
-        expect(controls.getByText('Unlock Gate'));
+        expect(dashboard.getByText('Unlock Gate'));
     })
 })
